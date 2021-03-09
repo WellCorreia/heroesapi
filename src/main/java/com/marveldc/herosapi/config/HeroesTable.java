@@ -33,7 +33,7 @@ public class HeroesTable {
 
         DynamoDB dynamoDB = new DynamoDB(clientAmazonDynamoDB);
 
-        String tableName = "heroesapiii";
+        String tableName = "new_table_heros";
 
         try {
             Table table = dynamoDB.createTable(tableName,

@@ -30,7 +30,7 @@ public class HeroesData {
 
         DynamoDB dynamoDB = new DynamoDB(clientAmazonDynamoDB);
 
-        Table table = dynamoDB.getTable("heroesapiii");
+        Table table = dynamoDB.getTable("new_table_heros");
         Item hero = new Item()
                 .withPrimaryKey("id", "1")
                 .withString("name", "Mulher Maravilha")
