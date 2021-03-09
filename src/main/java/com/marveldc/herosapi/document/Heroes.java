@@ -10,7 +10,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 
-@DynamoDBTable(tableName = "heroes")
+@DynamoDBTable(tableName = "heroesapiii")
 public class Heroes {
     @Id
     @DynamoDBHashKey(attributeName = "id")
@@ -19,14 +19,14 @@ public class Heroes {
     private String name;
     @DynamoDBAttribute(attributeName = "universe")
     private String universe;
-    @DynamoDBAttribute(attributeName = "movies")
-    private int movies;
+    @DynamoDBAttribute(attributeName = "films")
+    private int films;
 
-    public Heroes(String id, String name, String universe, int movies) {
+    public Heroes(String id, String name, String universe, int films) {
         this.id = id;
         this.name = name;
         this.universe = universe;
-        this.movies = movies;
+        this.films = films;
     }
 
     public String getId() {
@@ -54,10 +54,10 @@ public class Heroes {
     }
 
     public int getMovies() {
-        return movies;
+        return films;
     }
 
-    public void setMovies(int movies) {
-        this.movies = movies;
+    public void setMovies(int films) {
+        this.films = films;
     }
 }

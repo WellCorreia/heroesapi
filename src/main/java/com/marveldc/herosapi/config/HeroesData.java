@@ -24,19 +24,19 @@ import com.marveldc.herosapi.constans.HeroesConstant;
 
 public class HeroesData {
     public static void main(String[] args) throws Exception{
-        AmazonDynamoDB clienteAmazonDynamoDB = AmazonDynamoDBClientBuilder.standard()
-            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(HeroesConstant.ENDPOINT_DYNAMO, HeroesConstant.REGION))
-            .build();
+        AmazonDynamoDB clientAmazonDynamoDB = AmazonDynamoDBClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(HeroesConstant.ENDPOINT_DYNAMO, HeroesConstant.REGION))
+                .build();
 
-        DynamoDB dynamoDB = new DynamoDB(clienteAmazonDynamoDB);
+        DynamoDB dynamoDB = new DynamoDB(clientAmazonDynamoDB);
 
-        Table table = dynamoDB.getTable("heroes");
+        Table table = dynamoDB.getTable("heroesapiii");
         Item hero = new Item()
-                .withPrimaryKey("id", 1)
-                .withString("name", "Batman")
-                .withString("universe", "DC COMICS")
-                .withNumber("movies", 8);
-
-        PutItemOutcome outcome = table.putItem(hero);
+                .withPrimaryKey("id", "1")
+                .withString("name", "Mulher Maravilha")
+                .withString("universe", "dc comics")
+                .withNumber("films", 8);
+        System.out.println(hero);
+        PutItemOutcome outcome1 = table.putItem(hero);
     }
 }
