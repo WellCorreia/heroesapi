@@ -54,6 +54,16 @@ public class HeroesController {
 
     }
 
+    @PatchMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL + "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<ResponseEntity<Heroes>> updateHero(@RequestBody Heroes hero, @PathVariable String id) {
+        log.info("A new Hero was update");
+        return heroesService.update(hero, id)
+                .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
+                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
     @DeleteMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL + "/{id}")
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public Mono<HttpStatus> deletebyIDHero(@PathVariable String id) {

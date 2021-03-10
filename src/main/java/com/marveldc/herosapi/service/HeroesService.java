@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 
 @Service
 public class HeroesService {
@@ -20,20 +22,26 @@ public class HeroesService {
         return Flux.fromIterable(this.heroesRepository.findAll());
     }
 
-    public  Mono<Heroes> findByIdHero(String id){
+    public Mono<Heroes> findByIdHero(String id){
 
-        return  Mono.justOrEmpty(this.heroesRepository.findById(id));
+        return Mono.justOrEmpty(this.heroesRepository.findById(id));
     }
-
 
     public Mono<Heroes> save(Heroes heroes){
         return  Mono.justOrEmpty(this.heroesRepository.save(heroes));
+    }
+
+    public Mono<Heroes> update(Heroes hero, String id){
+        Optional<Heroes> findHero = this.heroesRepository.findById(id);
+        if (findHero.isPresent()) {
+            return Mono.justOrEmpty(this.heroesRepository.save(hero));
+        }
+        return Mono.justOrEmpty(findHero);
     }
 
 
     public Mono<Boolean> deletebyIDHero(String id) {
         heroesRepository.deleteById(id);
         return Mono.just(true);
-
     }
 }
